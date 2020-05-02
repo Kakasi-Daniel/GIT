@@ -1,0 +1,132 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    background-color: #ccc;
+}
+
+nav{
+    display: flex;
+    justify-content: space-between;
+    background-color: #444;
+    align-items: center;
+    border-bottom: olivedrab solid 4px;
+    position: relative;
+}
+
+.logo{
+    font-size: 1.5rem;
+    color: olivedrab;
+    padding: 10px;
+    font-weight: bold;
+}
+
+ul{
+    list-style: none;
+    display: flex;
+}
+
+a{
+    text-transform: uppercase;
+    color: #fff;
+    text-decoration: none;
+    margin: 0 10px;
+    padding: 10px 20px;
+    transition: color .3s ease-in-out;
+}
+
+a:hover{
+    color: olivedrab;
+}
+
+button{
+    cursor: pointer;
+    display: none;
+    background-color: green;
+    width: 40px;
+    height: 3px;
+    border: none;
+    margin-right: 20px;
+    position: relative;
+    transition: background-color .2s ease-in-out,
+                transform .2s ease-in-out;
+}
+
+button::before,
+button::after{
+    position: absolute;
+    content: '';
+    width: 40px;
+    height: 3px;
+    background-color: green;
+    left: 0;
+}
+
+button::before{
+   transform: translateY(-10px);
+}
+button::after{
+    transform: translateY(9px);
+}
+
+.x{
+    opacity: 1;
+    transform:translateY(0px) rotate(45deg);   
+    background: red;
+}
+
+.x::before{
+    opacity: 1;
+    transform:translateY(-1px) rotate(90deg);
+    background-color: red;
+}
+.x::after{
+    opacity: 0;
+}
+
+
+button:focus{
+    outline: none;
+}
+
+.h{
+    height: 120px !important;
+}
+
+@media (max-width:600px)
+{   
+    button{
+        display: block;
+    }
+
+    .menu{
+        position: absolute;
+        top: 104%;
+        left: 0;
+        width: 100%;
+        background-color: #444;
+        text-align: center;
+        height: 0px;
+        transition: height .4s ease-in-out;
+        border-bottom: 3px solid green;
+    }
+    ul{
+        height: 100%;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    li {
+        overflow: hidden;
+        height: 30px;
+        display: flex;
+        align-items: center;
+    }
+    a{
+      font-size: 1.3rem;  
+    }
+}

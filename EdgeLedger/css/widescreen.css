@@ -1,0 +1,13 @@
+#item {
+  display: flex;
+  flex-direction: row;
+}
+
+#item i {
+  align-self: center;
+  margin: 0;
+}
+
+.map {
+  flex: 2;
+}

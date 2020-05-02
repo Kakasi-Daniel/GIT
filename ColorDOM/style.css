@@ -1,0 +1,28 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.red {background-color: red;}
+.green {background-color: green;}
+.blue {background-color: blue;}
+.element{
+    border-left: 10px #000 solid;
+    background-color: gray;}
+
+.container {
+    display: grid;
+    grid-template-rows: 100vh;
+    grid-template-columns: 50vw 50vw;
+}
+
+.pallete {
+    display: flex;
+    flex-direction: column;
+}
+
+.pallete > * {
+    flex: 1;
+    text-align: center;
+}

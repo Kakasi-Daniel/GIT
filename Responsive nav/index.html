@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <nav>
+        <div class="logo">DA</div>
+        <div class="btctrl">
+            <button></button>
+        </div>
+        <div class="menu">
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <script>
+        const button = document.querySelector('.btctrl');
+        const buttonx = document.querySelector('button');
+        button.onclick = () => {
+            buttonx.classList.toggle('x');
+            document.querySelector('.menu').classList.toggle('h');
+        }
+        window.onresize = () => {
+            buttonx.classList.remove('x');
+            document.querySelector('.menu').classList.remove('h');
+        }
+    </script>
+</body>
+</html>

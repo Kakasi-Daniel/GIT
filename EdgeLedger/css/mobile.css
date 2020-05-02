@@ -1,0 +1,64 @@
+#item {
+  display: flex;
+  flex-direction: row;
+  margin-top: 20px;
+}
+
+#item i {
+  align-self: center;
+  margin: 0;
+}
+
+#items {
+  display: inline-block;
+  text-align: center;
+
+}
+
+@media (max-width: 500px) {
+
+  #navbar {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #navbar h1 {
+    margin-bottom: 1rem;
+  }
+
+  #who-img {
+    display: none;
+  }
+
+  #clients #items {
+    display: flex;
+  }
+
+  #clients #items div:first-child{
+    display: none;
+  }
+
+  #contact {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    height:1000px;
+  }
+
+  #contact-form {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    
+  }
+
+  .map {
+    display: flex;
+    flex: 2;
+  }
+
+  #sbtn {
+    margin: 0 auto;
+  }
+
+}

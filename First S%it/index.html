@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Websit</title>
+  <style>
+    *{
+      color: #fff;
+      box-sizing: border-box;
+    }
+
+    .container{
+      max-width: 960;
+      margin: auto;
+    }
+
+    body{
+      background-image: url(./img/background.jpg) ;
+      margin-left: 100px;
+      margin-right: 100px;
+    }
+
+    header{
+      margin-left: 600px;
+      font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+      background-color: #333;
+      width: 180px;
+      padding-left: 20px;
+      border-radius: 20px;
+    }
+
+    #about h3{
+      font-family:Georgia, 'Times New Roman', Times, serif;
+      
+    }
+
+    #about {
+      background-color: #333;
+      padding-left: 5px;
+      border-radius: 10px;
+      width: 300px;
+    }
+
+    #about p {
+      font-family: Georgia, 'Times New Roman', Times, serif;
+      font-size:small;
+      font-weight: bold;
+      
+    }
+
+    #sbutton {
+      background-color: black;
+      border-color: black;
+    
+    }
+
+    #rbutton{
+      background-color: black;
+      border-color: black;
+      
+    }
+
+    #formular{
+      background-color:#333;
+      border-radius: 10px;
+      width: 200px;
+      
+    }
+
+    #stare{
+      background-color:#333;
+      border-radius: 10px;
+      margin-top: 20px;
+      margin-bottom: 20px;
+      width: 300px;
+    }
+
+    #bdate , #sex,#name,#cc{
+
+        color: black;
+
+    }
+
+    #buttons {
+      margin-top: 20px;
+      margin-bottom: 20px;
+  
+    }
+
+    #frm{
+      background-color: #333;
+      width: 300px;
+      padding-left: 10px;
+      padding-top: 2px;
+      border-radius: 5px;
+    }
+
+  </style>
+</head> 
+<body>
+  <div class="container">
+    <header>
+      <h1>My Website</h1>
+    </header>
+    <div id="about">
+      <h3>About</h3>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Error, nobis.</p>
+    </div>
+    <form  action="process.php">
+      
+      <div id='frm'>
+      <div id="name">
+        <label for="name">Name</label>
+      <input type="text" name="name" placeholder="Kakasi Daniel" id="name">
+      <br> <br>
+      </div>
+      <div id="gendre">
+        <label for="sex">Sex</label>
+        <select name="sex" id="sex" >
+          <option id="cc" value="unspecified">Unspecified</option>
+          <option id="cc" value="male">Male</option>
+          <option id="cc" value="female">Female</option>
+        </select>
+      </div>
+      <div id="bdate">
+        <br>
+        <label for="bdate">Birthdate</label>
+        <input type="date" name="bdate" id="bdate">
+      </div>
+      </div>
+  
+      <section id="formular">
+        <p><br>&nbsp;&nbsp;&nbsp;Accept urmatoarele:</p>
+        <br>
+        <input type="checkbox" name="GDPR" value="GDPR" id="GDPR">
+        <label for="GDPR">GDPR</label>
+        <br>
+        <input type="checkbox" name="GDPR" value="GDPR" id="0">
+        <label for="0">GDPR</label>
+        <br>
+        <input type="checkbox" name="GDPR" value="GDPR" id="1">
+        <label for="1">GDPR</label>
+        <br>
+        <input type="checkbox" name="GDPR" value="GDPR" id="2">
+        <label for="2">GDPR</label>
+        <br>
+        <input type="checkbox" name="GDPR" value="GDPR" id="3">
+        <label for="3">GDPR</label>
+        <br>
+        <input type="checkbox" name="GDPR" value="GDPR" id="4">
+        <label for="4">GDPR</label>
+        <br>
+        <input type="checkbox" name="GDPR" value="GDPR" id="5">
+        <label for="5">GDPR</label>
+      </section>
+  
+      <div id="stare">
+        <input type="radio" name="radAnswer" value="emotionat" id="emotionat">
+        <label for="emotionat">Emotionat</label>
+        <br>
+        <input type="radio" name="radAnswer" value="fericit" id="fericit">
+        <label for="fericit">fericit</label>
+        <br>
+        <input type="radio" name="radAnswer" value="trist" id="trist">
+        <label for="trist">trist</label>
+        <br>
+        <input type="radio" name="radAnswer" value="idiot" id="toate">
+        <label for="toate">toate raspunsurile sunt corecte</label>
+        <br>
+        
+      </div>
+  
+      <div id="buttons">
+        <button id="sbutton" type="submit">Submit</button>
+      <button id="rbutton"type="reset">Reset</button>
+      </div>
+  
+    </form>
+      <a href="./index2.html" target="_blank">Urmatoarea pagina</a>
+  </div>
+</body>
+</html>

@@ -1,0 +1,14 @@
+{
+  "name": "boilerplate",
+  "version": "1.0.0",
+  "description": "boilerplate_by_Kakasi_Daniel",
+  "main": "index.js",
+  "scripts": {
+    "sass": "node-sass sass/main.scss css/style.css -w"
+  },
+  "author": "Kakasi_Daniel",
+  "license": "ISC",
+  "devDependencies": {
+    "node-sass": "^4.13.1"
+  }
+}

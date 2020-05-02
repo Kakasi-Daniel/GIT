@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/f6a98b0c32.js" crossorigin="anonymous"></script>
+    <style>
+        *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;}
+        ul{list-style: none;}
+        img{width: 100%;}
+        button{cursor: pointer;}
+        button:focus{outline: none;}
+        .carousel{
+            position: relative;
+            width: 90%;
+            margin: 0 auto;
+            height: 600px;}
+        .slide{
+            height: 100%;
+            width: 100%;
+            object-fit: cover;}
+        .carousel_track_container{
+            position: relative;
+            height: 100%;
+            overflow: hidden;}
+        .carousel__slide{
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 100%;}
+        .carousel_track{
+            position: relative;
+            height: 100%;
+            transition: transform .7s cubic-bezier(0.175, 0.885, 0.32, 1.275);}
+        .carousel_btn{
+            color: #f4f4f4;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 3rem;
+            border: none;
+            background-color: transparent;
+            z-index: 1;}
+        .carousel_btn-prev{left: 5px;}
+        .carousel_btn-next{right: 5px;}
+        .carousel_nav{
+            margin-top: 5px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;}
+        .nav_btn{
+            border: none;
+            background-color: rgba(3, 3, 3, 0.7);
+            width: 17px;
+            height: 17px;
+            border-radius: 50%;
+            margin: 0 5px;}
+        .nav_btn-active{
+            background-color:#000;}
+        .hidden { display: none;}
+    </style>
+    <title>Document</title>
+</head>
+<body>
+ <div class="carousel">
+    <button class="carousel_btn carousel_btn-prev"><i class="fas fa-chevron-left"></i></button>
+    <div class="carousel_track_container">
+         <ul class="carousel_track">
+             <li class="carousel__slide carousel__slide-curent" ><img class="slide" src="img1.jpg" alt=""></li>
+             <li class="carousel__slide" ><img class="slide" src="img3.jpg" alt=""></li>
+             <li class="carousel__slide" ><img class="slide" src="img2.jpg" alt=""></li>
+         </ul>
+     </div>
+     <button class="carousel_btn carousel_btn-next"><i class="fas fa-chevron-right"></i></button>
+     <div class="carousel_nav">
+         <button class="nav_btn nav_btn-active"></button>
+         <button class="nav_btn"></button>
+         <button class="nav_btn"></button>
+     </div>
+     <script>
+        let track = document.querySelector('.carousel_track');
+        let slides = Array.from(track.children);
+        let next = document.querySelector('.carousel_btn-next');
+        let prev = document.querySelector('.carousel_btn-prev');
+        let dotsNav = document.querySelector('.carousel_nav');
+        let dots = Array.from(dotsNav.children);
+        window.addEventListener("load", () => {
+        prev.classList.add('hidden');});
+        let slideWidth = slides[0].getBoundingClientRect().width;
+        window.onresize = () => {
+        track.style.transform= 'translateX(0)';
+        dots.forEach(e => {
+        e.classList.remove('nav_btn-active');})
+        slides.forEach(e => {
+        e.classList.remove('carousel__slide-curent');})
+        slides[0].classList.add('carousel__slide-curent');
+        dots[0].classList.add('nav_btn-active');
+        next.classList.remove('hidden');
+        prev.classList.add('hidden');
+        slideWidth= document.querySelector('.carousel_track').getBoundingClientRect().width;
+        slides.forEach(e => {
+        e.getBoundingClientRect().width =slideWidth+'px';})
+        slides.forEach(setSlidePosition);}
+        const setSlidePosition = (slide, index) => {
+        slide.style.left = slideWidth * index + 'px';}
+        const updateDots = (currentDot , targetDot) => {
+        currentDot.classList.remove('nav_btn-active');
+        targetDot.classList.add('nav_btn-active');};
+        const checkNav = (targetSlide) => {
+        targetSlide.nextElementSibling ? next.classList.remove('hidden') : next.classList.add('hidden');
+        targetSlide.previousElementSibling ? prev.classList.remove('hidden') : prev.classList.add('hidden');}
+        slides.forEach(setSlidePosition);
+        const moveToSlide = (currentSlide , targetSlide, track = document.querySelector('.carousel_track')) => {
+        track.style.transform = `translateX(-${targetSlide.style.left})`;
+        currentSlide.classList.remove('carousel__slide-curent');
+        targetSlide.classList.add('carousel__slide-curent');}
+        prev.addEventListener("click", e=> {
+        const currentSlide = track.querySelector('.carousel__slide-curent');
+        const prevSlide = currentSlide.previousElementSibling;
+        const currentDot = dotsNav.querySelector('.nav_btn-active');
+        const targetDot = currentDot.previousElementSibling;
+        moveToSlide(currentSlide, prevSlide);
+        updateDots(currentDot, targetDot);
+        checkNav(prevSlide);})
+        next.addEventListener('click' , e => {
+        const currentSlide = track.querySelector('.carousel__slide-curent');
+        const nextSlide = currentSlide.nextElementSibling;
+        const currentDot = dotsNav.querySelector('.nav_btn-active');
+        const targetDot = currentDot.nextElementSibling;
+        moveToSlide(currentSlide, nextSlide);
+        updateDots(currentDot, targetDot);
+        checkNav(nextSlide);})
+        dotsNav.addEventListener("click", e => {
+        const targetDot = e.target.closest('button');
+        if (!targetDot) return;
+        const currentSlide = track.querySelector('.carousel__slide-curent');
+        const currentDot = document.querySelector('.nav_btn-active');
+        const targetIndex = dots.findIndex(dot => dot === targetDot);
+        const targetSlide = slides[targetIndex];
+        moveToSlide(currentSlide, targetSlide);
+        updateDots(currentDot,targetDot);
+        checkNav(targetSlide);  })
+     </script>
+ </div>
+</body>
+</html>
