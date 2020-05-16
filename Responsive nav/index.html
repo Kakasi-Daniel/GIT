@@ -9,9 +9,11 @@
 <body>
     <nav>
         <div class="logo">DA</div>
-        <div class="btctrl">
-            <button></button>
-        </div>
+        <button class="hamburger hamburger--emphatic" type="button">
+            <span class="hamburger-box">
+              <span class="hamburger-inner"></span>
+            </span>
+          </button>
         <div class="menu">
             <ul>
                 <li><a href="#">Home</a></li>
@@ -22,16 +24,17 @@
     </nav>
 
     <script>
-        const button = document.querySelector('.btctrl');
-        const buttonx = document.querySelector('button');
-        button.onclick = () => {
-            buttonx.classList.toggle('x');
+        const ham = document.querySelector('.hamburger');
+        ham.onclick = () => {
+            ham.classList.toggle('is-active');
             document.querySelector('.menu').classList.toggle('h');
         }
-        window.onresize = () => {
-            buttonx.classList.remove('x');
+
+        window.onresize = () =>{
+            ham.classList.remove('is-active');
             document.querySelector('.menu').classList.remove('h');
         }
+
     </script>
 </body>
 </html>

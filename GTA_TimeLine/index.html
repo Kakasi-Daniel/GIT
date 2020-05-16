@@ -8,16 +8,16 @@
     <title>Main GTA Series</title>
 </head>
 <body>
-
+    <div class="line"></div>
     <div class="nav_container">
         <nav>
-            <div class="logo">GTA</div>
+            <div class="logo"><img src="./img/logo.png" alt=""></div>
             <div class="menu">
                 <ul>
                     <li><a href="#1">GTA III</a></li>
                     <li><a href="#2">GTA VC</a></li>
                     <li><a href="#3">GTA SA</a></li>
-                    <li><a href="#4">GTA IV</a></li>
+                    <li><a  onclick="scrollY + '200px'" href="#4">GTA IV</a></li>
                     <li><a href="#5">GTA EFLC</a></li>
                     <li><a href="#6">GTA V</a></li>
                 </ul>
@@ -91,7 +91,7 @@
     if (prevScrollpos > currentScrollPos) {
     document.querySelector('.nav_container').style.top = "0";
     } else {
-    document.querySelector('.nav_container').style.top = "-40px";
+    document.querySelector('.nav_container').style.top = "-55px";
     }
     prevScrollpos = currentScrollPos;
 }
@@ -103,6 +103,22 @@ window.addEventListener('scroll', function() {
     document.querySelector('.nav_container').style.opacity = 1;
   }
 });
+
+function moveScrollIndicator() {
+  const percentage = ((window.scrollY) / maxScrollableHeight) * 100;
+  scrollIndicatorElt.style.width = percentage + '%';
+}
+
+window.onresize = () => {
+    maxScrollableHeight = document.body.scrollHeight - window.innerHeight;
+}
+
+const scrollIndicatorElt = document.querySelector('.line');
+let maxScrollableHeight = document.body.scrollHeight - window.innerHeight;
+window.addEventListener('scroll', moveScrollIndicator);
+
+
+
   </script>
 
 </body>
