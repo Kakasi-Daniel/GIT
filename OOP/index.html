@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #333;
+}
+
+.message{
+  width: 40%;
+  text-align: center;
+  margin: auto;
+  color: #fff;
+  font-size: 2rem;
+  border-radius: 40px;
+  border: 3px solid #000;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: show 1.5s ease forwards;
+}
+
+@keyframes show {
+  0%{
+    top: 0;
+    opacity: 1;
+  }
+  100%{
+    top: 50px;
+    opacity:0;
+  }
+}
+
+.container {
+  width: 900px;
+  margin: auto;
+}
+
+.title {
+  color: aliceblue;
+  font-size: 1.3rem;
+  width: 100%;
+  text-align: center;
+  padding: 20px 0;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+    'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+form {
+  width: 100%;
+}
+
+.top {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.top > * {
+  flex: 1;
+  font-size: 1rem;
+  border-radius: 10px;
+  border: none;
+  padding: 5px 10px;
+  margin-right: 10px;
+  margin-bottom: 20px;
+  background-color: #999;
+  color: #f4f4f4;
+  border: 1px #fff solid;
+}
+
+input:focus,
+select:focus,
+button:focus {
+  outline: none;
+}
+
+.bot {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.bot input {
+  font-size: 1.1rem;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 10px;
+  width: 20%;
+  cursor: pointer;
+  background: rgba(19, 17, 112, 0.7);
+  color: #fff;
+  text-transform: uppercase;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  border: 2px solid rgba(19, 17, 112, 0.7);
+  transition: border,background .4s;
+}
+
+.bot input:hover {
+  background: rgb(19, 17, 112);
+  border: 2px solid #fff;
+}
+
+.list{
+  width: 100%;
+  margin-top: 30px;
+}
+
+.item{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top: 2px solid #fff;
+  border-bottom: 2px solid #fff;
+  padding: 10px 0;
+  color: #fff;
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+
+.item >*{
+  flex: 1;
+}
+
+.number{
+  flex: none;
+  margin-right: 20px;
+  border-right: 2px solid #fff;
+  padding-right: 5px;
+}
+
+.clr {
+  font-size: 1.1rem;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 10px;
+  width: 20%;
+  cursor: pointer;
+  background: rgba(255, 0, 0, .4);
+  color: #fff;
+  text-transform: uppercase;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  transition: background .4s;
+  margin-left: 10px;
+}
+
+.clr:hover{
+  background: red;
+}
+  </style>
+  <title>Document</title>
+</head>
+<body>
+
+  <div class="container">
+      <div class="title"><h1>OOP</h1></div>
+      <form>
+      <div class="top">
+        <input class="nameInput" type="text" placeholder="Name" required>
+      <select class="sexInput" name="sex" id="sex" >
+        <option value="">Select a Gendre</option>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+      </select>
+      <input class="phoneInput" type="tel" placeholder="Phone" required>
+      </div>
+      <div class="bot">
+        <input class="btn" type="submit">
+        <button class="clr" > Clear</button>
+      </div>
+      </form>
+      <div class="list"></div>
+
+  <script>
+    class Person {
+  constructor(name, sex, phone) {
+    this.name = name;
+    this.sex = sex;
+    this.phone = phone;
+  }
+  static checkPerson(pers) {
+    if(pers.name === '' || pers.phone === '' || pers.sex === ''){
+      return false;
+    }else{
+      return true;
+    }
+  }
+  static addToLocal(pers){
+    let persons = JSON.parse(localStorage.getItem('persons'));
+
+    if(persons === null){
+      persons = [];
+    }
+
+    persons.push(pers);
+
+    localStorage.setItem('persons', JSON.stringify(persons));
+  }
+
+  static clearMemory(){
+    localStorage.clear();
+  }
+}
+
+class UI {
+  static displayPerson(pers) {
+    document.querySelector('.list').insertAdjacentHTML('beforeend',`
+      <div class="item">
+          <div class="number">${document.querySelector('.list').childElementCount + 1}</div>
+          <div class="name">${pers.name}</div>
+          <div class="sex">${pers.sex}</div>
+          <div class="phone">${pers.phone}</div>
+        </div>
+      </div>
+    `);
+  }
+
+  static clearInputs (){
+  document.querySelector('.nameInput').value = '';
+  document.querySelector('.sexInput').value = '';
+  document.querySelector('.phoneInput').value= '';
+  }
+
+  static clearList(){
+    document.querySelector('.list').innerHTML = '';
+  }
+
+  static displayMessage(message,status){
+    if(document.querySelector('.message')){
+      document.querySelector('.message').remove();
+    }
+    document.querySelector('.container').insertAdjacentHTML('beforebegin', `
+    <div class="message">${message}</div>
+    `);
+    if (status){
+      document.querySelector('.message').style.background = 'green';
+    }else{
+      document.querySelector('.message').style.background = 'red'
+    }
+
+    let t = setTimeout( () => {
+      document.querySelector('.message').remove();
+    }
+      ,1500);
+
+  }
+}
+
+document.addEventListener('DOMContentLoaded', e => {
+  let persons = JSON.parse(localStorage.getItem('persons'));
+  if (persons != null){
+    persons.forEach(e => {
+      UI.displayPerson(e);
+    })
+  }
+})
+
+document.querySelector('.btn').onclick = (e) => {
+  const name = document.querySelector('.nameInput');
+  const sex = document.querySelector('.sexInput');
+  const phone = document.querySelector('.phoneInput');
+  const pers = new Person(name.value, sex.value, phone.value);
+
+  if (Person.checkPerson(pers)){
+    Person.addToLocal(pers);
+    UI.displayPerson(pers);
+    UI.clearInputs();
+    UI.displayMessage('Added',true);
+  }else{
+    UI.displayMessage('Check inputs', false);
+  }
+
+  e.preventDefault();
+};
+
+document.querySelector('.clr').addEventListener('click', e => {
+  if(document.querySelector('.list').innerHTML != ''){
+    UI.clearList();
+    Person.clearMemory();
+    UI.displayMessage('Elements cleared',true);
+  }else{
+    UI.displayMessage('There is no elements',false);
+  }
+  e.preventDefault();
+})
+  </script>
+</body>
+</html>
